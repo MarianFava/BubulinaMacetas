@@ -1,0 +1,68 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@600&display=swap');
+
+body{
+    font-family: 'Noto Sans Display' , 'sans-serif';
+}
+/*Inicio Header*/
+header{
+    display: flex;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 0px;
+    background-color:#1C7947;
+}
+.navHeader{
+    display: flex;
+    float: left;
+    justify-content:left;
+}
+.carrito{
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-top: 50px;
+}
+/*Fin Header*/
+
+/*Inicio Main*/
+main{
+    width: auto;
+    height: 1400px;
+    display: grid;
+}
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+.presentacion{
+    text-align: center;
+    
+}
+.card{
+    width: 200px;
+    height: 400px;
+    margin-top: 20px;
+}
+.card-img-top{
+    width: auto; 
+    height: 200px;
+}
+
+/*Fin Main*/
+
+/*Inicio Footer*/
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #2C2891;
+    padding: 1.5rem;
+    z-index: 3;
+}
+.iconosFooter{
+    width: 25px;
+    height: 25px;
+}
