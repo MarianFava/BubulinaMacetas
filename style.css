@@ -17,6 +17,7 @@ header{
     float: left;
     justify-content:left;
 }
+
 .carrito{
     width: 30px;
     height: 30px;
@@ -44,7 +45,13 @@ main{
     width: 200px;
     height: 400px;
     margin-top: 20px;
+    transition: all 0.3s;
 }
+.card:hover {
+    transition: all 0.3s;
+    transform: scale(1.1);
+}
+
 .card-img-top{
     width: auto; 
     height: 200px;

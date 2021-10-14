@@ -1,10 +1,9 @@
 let total = 0;
-function agregarAlCarrito(){
-    do{
+function agregarAlCarrito() {
+    do {
         let producto = prompt("Ingresar producto");
-        let cantidad = parseInt(prompt("Ingresar cantidad"));
         let precio = 0;
-        switch (producto){
+        switch (producto) {
             case "macetaGatito":
                 precio = 300;
                 break;
@@ -15,13 +14,30 @@ function agregarAlCarrito(){
                 precio = 300;
                 break;
             default:
-                alert("Algunos de los datos ingresados es incorrecto");
-                precio = 0;
-                cantidad = 0;        
+                alert("El producto no existe.");
+                continue;
         }
+        let cantidad = parseInt(prompt("Ingresar cantidad"));
+        if ( !( cantidad > 0 ) ) {
+            alert("La cantidad debe ser mayor a cero");
+            continue;
+        }
+        let discount =prompt("Ingrese código de descuento o Enter para continuar");
+        
+        precio = aplicarDescuento(discount, precio);
+
         total = total + precio * cantidad;
-        otroProducto = confirm ("¿Queres agregar otro producto?")
-    } while(otroProducto);
+        otroProducto = confirm( "¿Queres agregar otro producto?" );
+    } while (otroProducto);
     alert("Total = $" + total);
 }
-agregarAlCarrito();
+//
+function aplicarDescuento(code, precio) {
+    let precioConDescuento = precio;
+    if (code == "descuento10") {
+        precioConDescuento = precio * (100 - 10)/100;
+    }
+
+    return precioConDescuento;
+}
+    agregarAlCarrito();
