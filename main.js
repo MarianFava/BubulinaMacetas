@@ -96,5 +96,9 @@ calcularTotalCarrito();
 
 alert(`El total de su compra es $${totalCarrito} \nEl total con descuentos es $${totalConDescuento}`);
 
+//Se muestra en consola el ordenamiento del Array
+for ( itemOrdenado of carrito.sort((a , b) => a.producto.nombre > b.producto.nombre)){
+    console.log(itemOrdenado.producto.nombre + "(" + itemOrdenado.cantidad + ")");
+}
 
 
