@@ -31,15 +31,16 @@ main{
     width:1349px;
     height: 1800px;
     display: grid;
-    background-color: #EFB7B7;
+   /* background-color: #EFB7B7;*/
+   background-image:url(./media/FondoMain.jpg);
 }
 
 #fondoH1{
-    width: 100%;
+    width: 1349px;
     display: flex;
     min-height: 200px;
     padding: 0;
-    margin: 0;
+    margin-top: 0px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -58,6 +59,7 @@ main{
 }
 h1{
     font-style: italic;
+    margin-top: 10px;
 }
 .fondoSucu{
     width:100%;
@@ -74,11 +76,14 @@ h1{
 }
 .presentacion{
     text-align: center;
+    font-size: 16px;
 }
 .card{
     width: 200px;
     height: 400px;
     margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
     transition: all 0.3s;
     border-color: #39A388;
     background-color: #EEEEEE;
@@ -108,4 +113,11 @@ footer{
 .iconosFooter{
     width: 25px;
     height: 25px;
+}
+.p-footer{
+    display: inline;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 1px 1px ;
+    margin-bottom: 5px;
 }
