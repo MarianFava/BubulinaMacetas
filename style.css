@@ -28,10 +28,12 @@ header{
 
 /*Inicio Main*/
 main{
-    width: auto;
+    width:1349px;
     height: 1800px;
     display: grid;
+    background-color: #EFB7B7;
 }
+
 #fondoH1{
     width: 100%;
     display: flex;
@@ -64,7 +66,6 @@ h1{
     object-position: 50% 50%;
     opacity: 50%;
     padding-top: 0px;
-    
 }
 .container{
     display: grid;
@@ -73,13 +74,14 @@ h1{
 }
 .presentacion{
     text-align: center;
-    
 }
 .card{
     width: 200px;
     height: 400px;
     margin-top: 20px;
     transition: all 0.3s;
+    border-color: #39A388;
+    background-color: #EEEEEE;
 }
 .card:hover {
     transition: all 0.3s;
