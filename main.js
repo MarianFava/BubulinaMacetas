@@ -5,12 +5,13 @@ let totalConDescuento = 0;
 
 //Declaración de clase producto para creación de Macetas
 class Producto {
-    constructor(nombre, precio, color, tamanio, porcDescuento = 0) {
+    constructor(nombre, precio, color, tamanio,imagen, porcDescuento = 0) {
         this.nombre = nombre;
         this.precio = precio;
         this.color = color;
         this.tamanio = tamanio;
         this.porcDescuento = porcDescuento;
+        this.imagen = imagen;
     }
     //Método para calcular descuento//
     descuento() {
@@ -28,17 +29,14 @@ class ItemCarrito{
         this.producto = producto;
         this.cantidad = 0;
     }
-
     incrementar(cantidad){
         this.cantidad += cantidad;
     }
-
     decrementar(){
         if (this.cantidad > 0 ){
             this.cantidad--;            
         }
     }
-
 }
 //Funcion que permite seleccionar productos para agregar al carrito
 function agregarAlCarrito(){
@@ -69,7 +67,6 @@ function agregarAlCarrito(){
         otroProducto = confirm("¿Queres agregar otro producto?");
         
     }while(otroProducto)
-    
 }
 //Funcion para totalizar precio segun productos y cantidad ingresadas
 function calcularTotalCarrito(){
@@ -80,21 +77,52 @@ function calcularTotalCarrito(){
             totalCarrito = totalCarrito + productoCarrito.producto.precio * productoCarrito.cantidad;
         }
     }
-
 }
 //Bloque principal
 //Instanciación de objetos tipo Producto(distintas macetas)
-carrito.push(new ItemCarrito(new Producto("Maceta Buda", 300, "Dorado", "Mediano", 0)));
-carrito.push(new ItemCarrito(new Producto("Maceta Gatito", 300, "Gris", "Mediano", 10)));
-carrito.push(new ItemCarrito(new Producto("Maceta Cactus", 200, "Verde", "Pequeño", 0)));
-carrito.push(new ItemCarrito(new Producto("Maceta Llama", 300, "Turquesa", "Mediano",5)));
+carrito.push(new ItemCarrito(new Producto("Maceta Buda", 300, "Dorado", "Mediano","./media/BudaDorado.jpg", 0)));
+carrito.push(new ItemCarrito(new Producto("Maceta Cactus", 200, "Verde", "Pequeño","./media/Cactus.jpg", 0)));
+carrito.push(new ItemCarrito(new Producto("Maceta Gatito", 300, "Gris", "Mediano","./media/Gato.jpg", 10)));
+carrito.push(new ItemCarrito(new Producto("Maceta Llama", 300, "Turquesa", "Mediano","./media/LlamaTurquesa.jpg",5)));
+carrito.push(new ItemCarrito(new Producto("Pink Floyd", 300, "Negro", "Mediano", "./media/LadoOscuro.jpg",5)));
+carrito.push(new ItemCarrito(new Producto("Geometrica", 200, "Lila", "Pequeño", "./media/FormasLila.jpg")));
+carrito.push(new ItemCarrito(new Producto("Llama Celeste", 350, "Celeste", "Grande", "./media/LlamaCeleste.jpg")));
+carrito.push(new ItemCarrito(new Producto("Llama Rosa", 300, "Rosa", "Mediano", "./media/LlamaRosa2.jpg")));
+carrito.push(new ItemCarrito(new Producto("Redonda Lunares", 300, "Rosa", "Mediano", "./media/redondaLunares.jpeg" )));
+carrito.push(new ItemCarrito(new Producto("Ojos", 300, "Blanca", "Mediano", "./media/ojos.jpeg" )));
+carrito.push(new ItemCarrito(new Producto("Hexagonal", 200, "Multicolor", "Pequeño","./media/hexagonal.jpeg")));
+carrito.push(new ItemCarrito(new Producto("Universo", 200, "Negro", "Pequeño", "./media/RedondaUniverso.jpg")));
+//Se obtiene el elemento main con ID "productos"
+let listaProductos = document.getElementById("productos");
+//Creación de cards
+for( let i = 0; i <carrito.length; i++){
+    //Creacion de elemento "div" para las cards (Manipulando el Dom)
+    let card = document.createElement("div");
+    card.classList.add("card");
+    card.classList.add("border-3");
 
+    card.innerHTML = `<img
+    src="${carrito[i].producto.imagen}"
+    class="card-img-top"
+    alt="${carrito[i].producto.nombre}"
+  />
+  <div class="card-body">
+    <h5 class="card-title">${carrito[i].producto.nombre.toUpperCase()}</h5>
+    <p class="card-text">${carrito[i].producto.nombre} Tamaño:${carrito[i].producto.tamanio} </p>
+    <p class="card-text">
+      <small class="text-muted">Precio: $${carrito[i].producto.precio}</small>
+    </p>
+  </div>`;
+
+  listaProductos.append(card);
+}
 //Invocamos la funcion que solicita ingresar productos para agregar al carrito
 agregarAlCarrito();
 //Invocamos la funcion que calcula el total del carrito
 calcularTotalCarrito();
 
-alert(`El total de su compra es $${totalCarrito} \nEl total con descuentos es $${totalConDescuento}`);
+let carritoDom = document.getElementById("carrito");
+carritoDom.innerHTML=`El total de su compra es $${totalCarrito}. \nEl total con descuentos es $${totalConDescuento}`;
 
 //Se muestra en consola el ordenamiento del Array
 for ( itemOrdenado of carrito.sort((a , b) => a.producto.nombre > b.producto.nombre)){
