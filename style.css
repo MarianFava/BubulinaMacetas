@@ -102,6 +102,20 @@ h1{
     width: auto; 
     height: 200px;
 }
+.btnComprar{
+    height: 30px; 
+    padding-left: 5px;
+    padding-right: 5px;   
+    margin-bottom: 10px; 
+    margin-top: 10px;   
+    text-transform: uppercase;
+    background-color: rgb(92, 151, 3); 
+    border-color: #ab4493; 
+    border-style: 3px solid; 
+    border-radius: 10px;  
+    width: 90%;   
+    cursor: pointer;
+}
 
 /*Fin Main*/
 

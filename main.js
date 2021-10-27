@@ -39,44 +39,31 @@ class ItemCarrito{
     }
 }
 //Funcion que permite seleccionar productos para agregar al carrito
-function agregarAlCarrito(){
-    let otroProducto;
-    let producto;
-    let cantidad;
+function agregarAlCarrito(producto){
+    
     let productoSeleccionado;
     
-    do{
-        //Se ingresa producto seleccionado
-        producto = prompt("Ingrese el producto");
         //Se busca el producto seleccionado en el array de Items(ItemCarrito)
-        productoSeleccionado = carrito.find( itemCarrito => itemCarrito.producto.nombre == producto) ;
-        cantidad = 0;
+        productoSeleccionado = carrito.find( itemCarrito => itemCarrito.producto.nombre.toUpperCase() == producto) ;
+       
+        productoSeleccionado.incrementar(1);
         
-        if ( productoSeleccionado ){
-            cantidad = parseInt(prompt("Ingrese cantidad"));
-        }else {
-            alert("No existe el producto");
-            otroProducto = confirm("¿Queres agregar otro producto?");
-            if(otroProducto){
-                continue;
-            }else{
-                break;
-            }
-        }   
-        productoSeleccionado.incrementar(cantidad);
-        otroProducto = confirm("¿Queres agregar otro producto?");
-        
-    }while(otroProducto)
 }
-//Funcion para totalizar precio segun productos y cantidad ingresadas
+
+//Función para totalizar precio segun productos y cantidad ingresadas
 function calcularTotalCarrito(){
     for ( productoCarrito of carrito){
         if ( productoCarrito.cantidad > 0){
-            console.log(productoCarrito.producto.nombre + " Cantidad: " + productoCarrito.cantidad);
+            //console.log(productoCarrito.producto.nombre + " Cantidad: " + productoCarrito.cantidad);
             totalConDescuento = totalConDescuento + productoCarrito.producto.aplicarDescuento() * productoCarrito.cantidad;
             totalCarrito = totalCarrito + productoCarrito.producto.precio * productoCarrito.cantidad;
         }
     }
+}
+//Función para visualizar total del carrito
+function visualizarTotalCarrito(){
+    let carritoDom = document.getElementById("carrito");
+    carritoDom.innerHTML=`El total de su compra es $${totalCarrito}. \nEl total con descuentos es $${totalConDescuento}`;
 }
 //Bloque principal
 //Instanciación de objetos tipo Producto(distintas macetas)
@@ -88,7 +75,7 @@ carrito.push(new ItemCarrito(new Producto("Pink Floyd", 300, "Negro", "Mediano",
 carrito.push(new ItemCarrito(new Producto("Geometrica", 200, "Lila", "Pequeño", "./media/FormasLila.jpg")));
 carrito.push(new ItemCarrito(new Producto("Llama Celeste", 350, "Celeste", "Grande", "./media/LlamaCeleste.jpg")));
 carrito.push(new ItemCarrito(new Producto("Llama Rosa", 300, "Rosa", "Mediano", "./media/LlamaRosa2.jpg")));
-carrito.push(new ItemCarrito(new Producto("Redonda Lunares", 300, "Rosa", "Mediano", "./media/redondaLunares.jpeg" )));
+carrito.push(new ItemCarrito(new Producto("Lunares", 300, "Rosa", "Mediano", "./media/redondaLunares.jpeg" )));
 carrito.push(new ItemCarrito(new Producto("Ojos", 300, "Blanca", "Mediano", "./media/ojos.jpeg" )));
 carrito.push(new ItemCarrito(new Producto("Hexagonal", 200, "Multicolor", "Pequeño","./media/hexagonal.jpeg")));
 carrito.push(new ItemCarrito(new Producto("Universo", 200, "Negro", "Pequeño", "./media/RedondaUniverso.jpg")));
@@ -112,21 +99,28 @@ for( let i = 0; i <carrito.length; i++){
     <p class="card-text">
       <small class="text-muted">Precio: $${carrito[i].producto.precio}</small>
     </p>
-  </div>`;
 
+  </div>`;
+  //Se crea el botón comprar
+  let btnComprar = document.createElement("button");
+  //Se le agrega la clase al botón "Comprar"
+  btnComprar.classList.add("btnComprar");
+  //Se le agrega el texto al botón
+  btnComprar.innerText = "Comprar";
+  //Captura de evento click en botones comprar
+  btnComprar.onclick = () => {
+    console.log(btnComprar.parentNode.children[1].children[0].innerText);
+    agregarAlCarrito(btnComprar.parentNode.children[1].children[0].innerText);
+    calcularTotalCarrito();
+    visualizarTotalCarrito();
+}
+  card.append(btnComprar);
   listaProductos.append(card);
 }
-//Invocamos la funcion que solicita ingresar productos para agregar al carrito
-agregarAlCarrito();
-//Invocamos la funcion que calcula el total del carrito
-calcularTotalCarrito();
 
-let carritoDom = document.getElementById("carrito");
-carritoDom.innerHTML=`El total de su compra es $${totalCarrito}. \nEl total con descuentos es $${totalConDescuento}`;
 
-//Se muestra en consola el ordenamiento del Array
-for ( itemOrdenado of carrito.sort((a , b) => a.producto.nombre > b.producto.nombre)){
-    console.log(itemOrdenado.producto.nombre + "(" + itemOrdenado.cantidad + ")");
-}
+
+
+
 
 
