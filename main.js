@@ -13,7 +13,7 @@ class Producto {
         this.porcDescuento = porcDescuento;
         this.imagen = imagen;
     }
-    //Método para calcular descuento//
+    //Método para calcular descuento//Método:función que sólo se aplica dentro del objeto
     descuento() {
         return this.precio * this.porcDescuento/100;
     }
@@ -25,9 +25,9 @@ class Producto {
 
 //Se define una clase para representar los items en carrito
 class ItemCarrito{
-    constructor(producto){
+    constructor(producto,cantidad = 0){
         this.producto = producto;
-        this.cantidad = 0;
+        this.cantidad = cantidad;
     }
     incrementar(cantidad){
         this.cantidad += cantidad;
@@ -38,20 +38,22 @@ class ItemCarrito{
         }
     }
 }
-//Funcion que permite seleccionar productos para agregar al carrito
+//Función que permite seleccionar productos para agregar al carrito
 function agregarAlCarrito(producto){
     
     let productoSeleccionado;
     
-        //Se busca el producto seleccionado en el array de Items(ItemCarrito)
-        productoSeleccionado = carrito.find( itemCarrito => itemCarrito.producto.nombre.toUpperCase() == producto) ;
-       
-        productoSeleccionado.incrementar(1);
-        
+//Se busca el producto seleccionado en el array de Items(ItemCarrito)
+    productoSeleccionado = carrito.find( itemCarrito => itemCarrito.producto.nombre.toUpperCase() == producto) ;
+    productoSeleccionado.incrementar(1);
+//Local Storage y JSON
+    localStorage.setItem("Carrito Storage", JSON.stringify(carrito));
 }
 
 //Función para totalizar precio segun productos y cantidad ingresadas
 function calcularTotalCarrito(){
+    totalConDescuento = 0;
+    totalCarrito = 0;
     for ( productoCarrito of carrito){
         if ( productoCarrito.cantidad > 0){
             //console.log(productoCarrito.producto.nombre + " Cantidad: " + productoCarrito.cantidad);
@@ -66,19 +68,34 @@ function visualizarTotalCarrito(){
     carritoDom.innerHTML=`El total de su compra es $${totalCarrito}. \nEl total con descuentos es $${totalConDescuento}`;
 }
 //Bloque principal
+
 //Instanciación de objetos tipo Producto(distintas macetas)
-carrito.push(new ItemCarrito(new Producto("Maceta Buda", 300, "Dorado", "Mediano","./media/BudaDorado.jpg", 0)));
-carrito.push(new ItemCarrito(new Producto("Maceta Cactus", 200, "Verde", "Pequeño","./media/Cactus.jpg", 0)));
-carrito.push(new ItemCarrito(new Producto("Maceta Gatito", 300, "Gris", "Mediano","./media/Gato.jpg", 10)));
-carrito.push(new ItemCarrito(new Producto("Maceta Llama", 300, "Turquesa", "Mediano","./media/LlamaTurquesa.jpg",5)));
-carrito.push(new ItemCarrito(new Producto("Pink Floyd", 300, "Negro", "Mediano", "./media/LadoOscuro.jpg",5)));
-carrito.push(new ItemCarrito(new Producto("Geometrica", 200, "Lila", "Pequeño", "./media/FormasLila.jpg")));
-carrito.push(new ItemCarrito(new Producto("Llama Celeste", 350, "Celeste", "Grande", "./media/LlamaCeleste.jpg")));
-carrito.push(new ItemCarrito(new Producto("Llama Rosa", 300, "Rosa", "Mediano", "./media/LlamaRosa2.jpg")));
-carrito.push(new ItemCarrito(new Producto("Lunares", 300, "Rosa", "Mediano", "./media/redondaLunares.jpeg" )));
-carrito.push(new ItemCarrito(new Producto("Ojos", 300, "Blanca", "Mediano", "./media/ojos.jpeg" )));
-carrito.push(new ItemCarrito(new Producto("Hexagonal", 200, "Multicolor", "Pequeño","./media/hexagonal.jpeg")));
-carrito.push(new ItemCarrito(new Producto("Universo", 200, "Negro", "Pequeño", "./media/RedondaUniverso.jpg")));
+let carritoStorage =JSON.parse(localStorage.getItem("Carrito Storage")) || [];
+console.log(carritoStorage);
+if (carritoStorage.length >0){
+   
+    for(let item of carritoStorage){
+        carrito.push(new ItemCarrito(new Producto(item.producto.nombre,item.producto.precio,item.producto.color,item.producto.tamanio,
+        item.producto.imagen,item.producto.porcDescuento),item.cantidad));
+    }
+    calcularTotalCarrito();
+    visualizarTotalCarrito();
+}
+else{
+    carrito.push(new ItemCarrito(new Producto("Maceta Buda", 300, "Dorado", "Mediano","./media/BudaDorado.jpg", 0)));
+    carrito.push(new ItemCarrito(new Producto("Maceta Cactus", 200, "Verde", "Pequeño","./media/Cactus.jpg", 0)));
+    carrito.push(new ItemCarrito(new Producto("Maceta Gatito", 300, "Gris", "Mediano","./media/Gato.jpg", 10)));
+    carrito.push(new ItemCarrito(new Producto("Maceta Llama", 300, "Turquesa", "Mediano","./media/LlamaTurquesa.jpg",5)));
+    carrito.push(new ItemCarrito(new Producto("Pink Floyd", 300, "Negro", "Mediano", "./media/LadoOscuro.jpg",5)));
+    carrito.push(new ItemCarrito(new Producto("Geometrica", 200, "Lila", "Pequeño", "./media/FormasLila.jpg")));
+    carrito.push(new ItemCarrito(new Producto("Llama Celeste", 350, "Celeste", "Grande", "./media/LlamaCeleste.jpg")));
+    carrito.push(new ItemCarrito(new Producto("Llama Rosa", 300, "Rosa", "Mediano", "./media/LlamaRosa2.jpg")));
+    carrito.push(new ItemCarrito(new Producto("Lunares", 300, "Rosa", "Mediano", "./media/redondaLunares.jpeg" )));
+    carrito.push(new ItemCarrito(new Producto("Ojos", 300, "Blanca", "Mediano", "./media/ojos.jpeg" )));
+    carrito.push(new ItemCarrito(new Producto("Hexagonal", 200, "Multicolor", "Pequeño","./media/hexagonal.jpeg")));
+    carrito.push(new ItemCarrito(new Producto("Universo", 200, "Negro", "Pequeño", "./media/RedondaUniverso.jpg")));
+}
+
 //Se obtiene el elemento main con ID "productos"
 let listaProductos = document.getElementById("productos");
 //Creación de cards
@@ -109,7 +126,8 @@ for( let i = 0; i <carrito.length; i++){
   btnComprar.innerText = "Comprar";
   //Captura de evento click en botones comprar
   btnComprar.onclick = () => {
-    console.log(btnComprar.parentNode.children[1].children[0].innerText);
+    
+  //Llamo a la función para agregar al carrito//innertext contenido elemento h5
     agregarAlCarrito(btnComprar.parentNode.children[1].children[0].innerText);
     calcularTotalCarrito();
     visualizarTotalCarrito();

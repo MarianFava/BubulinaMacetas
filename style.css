@@ -7,7 +7,7 @@ body{
 /*Inicio Header*/
 header{
     display: flex;
-    width: 100%;
+    width: 221vh;
     height: 150px;
     margin-bottom: 0px;
     background-color:#1C7947;
@@ -17,12 +17,23 @@ header{
     float: left;
     justify-content:left;
 }
-
+.buttonNav:hover{
+    transition: all 0.6s;
+    transform: scale(1.1);
+    background-color: #ab4493;
+    border-radius: 5px;
+}
 .carrito{
     width: 30px;
     height: 30px;
     float: right;
     margin-top: 50px;
+}
+.carrito :hover{
+    transition: all 0.6s;
+    transform: scale(1.1);
+    background-color: #ab4493;
+    border-radius: 5px;
 }
 /*Fin Header*/
 
@@ -34,7 +45,6 @@ main{
    /* background-color: #EFB7B7;*/
    background-image:url(./media/FondoMain.jpg);
 }
-
 #fondoH1{
     width: 1349px;
     display: flex;
@@ -66,7 +76,7 @@ h1{
     height: 200px;
     object-fit: cover;
     object-position: 50% 50%;
-    opacity: 50%;
+    opacity: 30%;
     padding-top: 0px;
 }
 #carrito{
@@ -96,8 +106,8 @@ h1{
 .card:hover {
     transition: all 0.3s;
     transform: scale(1.1);
+    box-shadow: 3px 3px #699292;
 }
-
 .card-img-top{
     width: auto; 
     height: 200px;
@@ -116,7 +126,6 @@ h1{
     width: 90%;   
     cursor: pointer;
 }
-
 /*Fin Main*/
 
 /*Inicio Footer*/
