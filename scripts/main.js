@@ -3,68 +3,6 @@ let carrito = [];
 let totalCarrito = 0;
 let totalConDescuento = 0;
 
-//Declaración de clase producto para creación de Macetas
-class Producto {
-    constructor(nombre, precio, color, tamanio, imagen, porcDescuento = 0) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.color = color;
-        this.tamanio = tamanio;
-        this.porcDescuento = porcDescuento;
-        this.imagen = imagen;
-    }
-    //Método para calcular descuento//Método:función que sólo se aplica dentro del objeto
-    descuento() {
-        return this.precio * this.porcDescuento / 100;
-    }
-    aplicarDescuento() {
-        //Precio con descuento aplicado//
-        return this.precio * (100 - this.porcDescuento) / 100;
-    }
-}
-//Se define una clase para representar los items en carrito
-class ItemCarrito {
-    constructor(producto, cantidad = 0) {
-        this.producto = producto;
-        this.cantidad = cantidad;
-    }
-    incrementar(cantidad) {
-        this.cantidad += cantidad;
-    }
-    decrementar() {
-        if (this.cantidad > 0) {
-            this.cantidad--;
-        }
-    }
-}
-//Función que permite seleccionar productos para agregar al carrito
-function agregarAlCarrito(producto) {
-    let productoSeleccionado;
-
-    //Se busca el producto seleccionado en el array de Items(ItemCarrito)
-    productoSeleccionado = carrito.find(itemCarrito => itemCarrito.producto.nombre.toUpperCase() == producto);
-    productoSeleccionado.incrementar(1);
-    //Local Storage y JSON
-    localStorage.setItem("Carrito Storage", JSON.stringify(carrito));
-}
-
-//Función para totalizar precio segun productos y cantidad ingresadas
-function calcularTotalCarrito() {
-    totalConDescuento = 0;
-    totalCarrito = 0;
-    for (productoCarrito of carrito) {
-        if (productoCarrito.cantidad > 0) {
-            //console.log(productoCarrito.producto.nombre + " Cantidad: " + productoCarrito.cantidad);
-            totalConDescuento = totalConDescuento + productoCarrito.producto.aplicarDescuento() * productoCarrito.cantidad;
-            totalCarrito = totalCarrito + productoCarrito.producto.precio * productoCarrito.cantidad;
-        }
-    }
-}
-//Función para visualizar total del carrito
-function visualizarTotalCarrito() {
-    let carritoDom = document.getElementById("carrito");
-    carritoDom.innerHTML = `El total de su compra es $${totalCarrito}. \nEl total con descuentos es $${totalConDescuento}`;
-}
 //Bloque principal
 /*Se asegura que la ejecución ppal de la aplicación 
 suceda cuando la página esté cargada*/
@@ -136,3 +74,15 @@ $(document).ready(function () {
         visualizarTotalCarrito();
     });
 })
+
+//Efectos y animaciones concatenadas con jQuery
+//Fade h1
+$("h1").fadeOut("slow").fadeIn(3000);
+//Animate párrafo inicial
+$(".presentacion").animate({ 
+    left:"250px",
+    height:"150px",
+    width:"850px" }, 
+    "slow",
+);
+

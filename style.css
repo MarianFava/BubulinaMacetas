@@ -20,7 +20,7 @@ header{
 .buttonNav:hover{
     transition: all 0.6s;
     transform: scale(1.1);
-    background-color: #ab4493;
+    background-color: #90fac5;
     border-radius: 5px;
 }
 .carrito{
@@ -32,7 +32,7 @@ header{
 .carrito :hover{
     transition: all 0.6s;
     transform: scale(1.1);
-    background-color: #ab4493;
+    background-color: #90fac5;
     border-radius: 5px;
 }
 /*Fin Header*/
@@ -106,7 +106,7 @@ h1{
 .card:hover {
     transition: all 0.3s;
     transform: scale(1.1);
-    box-shadow: 3px 3px #699292;
+    box-shadow:-5px 5px 5px #90fac5;
 }
 .card-img-top{
     width: auto; 
@@ -116,8 +116,7 @@ h1{
     height: 30px; 
     padding-left: 5px;
     padding-right: 5px;   
-    margin-bottom: 10px; 
-    margin-top: 10px;   
+    margin :10px auto;
     text-transform: uppercase;
     background-color: rgb(92, 151, 3); 
     border-color: #ab4493; 
