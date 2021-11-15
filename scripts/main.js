@@ -79,10 +79,14 @@ $(document).ready(function () {
 //Fade h1
 $("h1").fadeOut("slow").fadeIn(3000);
 //Animate párrafo inicial
-$(".presentacion").animate({ 
-    left:"250px",
-    height:"150px",
-    width:"850px" }, 
+/*$(".presentacion").animate({
+    left: "250px",
+    height: "150px",
+    width: "860px"
+},
     "slow",
-);
+);*/
+
+$(".presentacion").hide();
+$(".presentacion").slideDown(3000);
 
