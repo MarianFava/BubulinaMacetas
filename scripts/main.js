@@ -26,7 +26,7 @@ $(document).ready(function () {
     let listaProductos = document.getElementById("productos");
 
     //Llamada AJAX a Archivo JSON con productos
-    $.getJSON("/data/productos.json", (respuesta,estado)=>{
+    $.getJSON("./data/productos.json", (respuesta,estado)=>{
         if (estado === "success") {
             let misProductos= respuesta;
             for( const dato of misProductos){
@@ -80,4 +80,10 @@ $("h1").fadeOut("slow").fadeIn(3000);
 //Animación para cards del carrito
 $("#carrito").hide().slideDown(1500);
 
+//Modal Carrito
+let myModal = document.getElementById('myModal')
+let myInput = document.getElementById('myInput')
 
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
