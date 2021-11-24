@@ -13,22 +13,7 @@ class Producto {
         return this.precio * this.porcDescuento / 100;
     }
     aplicarDescuento() {
-        //Precio con descuento aplicado//
+    //Precio con descuento aplicado//
         return this.precio * (100 - this.porcDescuento) / 100;
-    }
-}
-//Se define una clase para representar los items en carrito
-class ItemCarrito {
-    constructor(producto, cantidad = 0) {
-        this.producto = producto;
-        this.cantidad = cantidad;
-    }
-    incrementar(cantidad) {
-        this.cantidad += cantidad;
-    }
-    decrementar() {
-        if (this.cantidad > 0) {
-            this.cantidad--;
-        }
     }
 }

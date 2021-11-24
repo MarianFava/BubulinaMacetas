@@ -68,17 +68,20 @@
           </div>
         </nav>
       </div>
+      <!--Boton LogIn y Carrito -->
       <div class="container col-md-2 carrito">
-        <img
-          class="carrito"
-          src="./media/inicioSesion.png"
-          alt="Inicie Sesión"
-        />
-        <img
-          class="carrito"
-          src="./media/Carrito.png"
-          alt="Carrito de compras"
-        />
+        <a href="login.html" id="caja-login">
+          <img class="icono-header" src="./media/inicioSesion.png" alt="Inicie Sesión" /> 
+       </a>
+        <a href="#contenedorCarrito" id="caja-carrito">
+          <span id="contador-carrito">0</span>
+          <img
+            id="icono-carrito"
+            class="icono-header"
+            src="./media/Carrito.png"
+            alt="Carrito de compras"
+          />
+        </a>
       </div>
     </header>
 
@@ -101,6 +104,28 @@
         <!--Se incorporan las cards de productos mediante main.js-->
       </div>
     </main>
+
+    <!--Ventana Modal-->
+    <section id="contenedorCarrito">
+      <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Tu pedido</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">+</button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">-</button>
+            </div>
+            <div class="modal-body">
+              <p>Subtotal =</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary">Pagar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!--Fin main-->
 
     <!--Inicio Footer-->
@@ -152,7 +177,8 @@
       crossorigin="anonymous"
     ></script>
     <!--Link JS-->
-    <script src="./scripts/clases.js"></script>
+    <script src="./scripts/Producto.js"></script>
+    <script src="./scripts/ItemCarrito.js"></script>
     <script src="./scripts/funciones.js"></script>
     <script src="./scripts/main.js"></script>
   </body>

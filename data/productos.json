@@ -1,0 +1,99 @@
+[
+    {
+        "nombre": "Maceta Buda",
+        "precio": 300,
+        "color": "Dorado",
+        "tamanio": "Mediano",
+        "porcDescuento": 0,
+        "imagen":"./media/BudaDorado.jpg"
+    },
+    {
+        "nombre": "Maceta Cactus",
+        "precio": 200,
+        "color": "Verde",
+        "tamanio": "Pequeño",
+        "porcDescuento": 0,
+        "imagen":"./media/Cactus.jpg"
+    },
+    {
+        "nombre": "Maceta Gatito",
+        "precio": 300,
+        "color": "Gris",
+        "tamanio": "Mediano",
+        "porcDescuento": 10,
+        "imagen":"./media/Gato.jpg"
+    },
+    {
+        "nombre": "Maceta Llama",
+        "precio": 300,
+        "color": "Turquesa",
+        "tamanio": "Mediano",
+        "porcDescuento": 5,
+        "imagen":"./media/LlamaTurquesa.jpg"
+    },
+    {
+        "nombre": "Pink Floyd",
+        "precio": 300,
+        "color": "Negro",
+        "tamanio": "Mediano",
+        "porcDescuento": 5,
+        "imagen":"./media/LadoOscuro.jpg"
+    },
+    {
+        "nombre": "Geometrica",
+        "precio": 200,
+        "color": "Lila",
+        "tamanio": "Pequeño",
+        "porcDescuento": 0,
+        "imagen":"./media/FormasLila.jpg"
+    },
+    {
+        "nombre": "Llama Celeste",
+        "precio": 350,
+        "color": "Celeste",
+        "tamanio": "Grande",
+        "porcDescuento": 0,
+        "imagen":"./media/LlamaCeleste.jpg"
+    },
+    {
+        "nombre": "Llama Rosa",
+        "precio": 300,
+        "color": "Rosa",
+        "tamanio": "Mediano",
+        "porcDescuento": 0,
+        "imagen":"./media/LlamaRosa2.jpg"
+    },
+    {
+        "nombre": "Lunares",
+        "precio": 300,
+        "color": "Rosa",
+        "tamanio": "Mediano",
+        "porcDescuento": 0,
+        "imagen":"./media/redondaLunares.jpeg"
+    },
+    {
+        "nombre": "Maceta Ojos",
+        "precio": 300,
+        "color": "Blanca",
+        "tamanio": "Mediano",
+        "porcDescuento": 0,
+        "imagen":"./media/ojos.jpeg"
+    },
+    {
+        "nombre": "Hexagonal",
+        "precio": 200,
+        "color": "Multicolor",
+        "tamanio": "Pequeño",
+        "porcDescuento": 0,
+        "imagen":"./media/hexagonal.jpeg"
+    },
+    {
+        "nombre": "Universo",
+        "precio": 200,
+        "color": "Negro",
+        "tamanio": "Pequeño",
+        "porcDescuento": 0,
+        "imagen":"./media/RedondaUniverso.jpg"
+    }
+
+]
