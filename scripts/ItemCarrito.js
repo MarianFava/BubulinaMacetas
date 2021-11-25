@@ -4,7 +4,7 @@ class ItemCarrito {
         this.producto = producto;
         this.cantidad = cantidad;
     }
-    incrementar(cantidad) {
+    incrementar(cantidad = 1) {
         this.cantidad += cantidad;
     }
     decrementar() {
