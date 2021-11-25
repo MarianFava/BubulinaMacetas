@@ -52,6 +52,7 @@ function agregarAlCarrito(producto) {
 function dibujarCarrito() {
     let totalCarrito=0;
     let totalConDescuento=0;
+    let cantidad = 0;
     //Se obtiene  tbody con id #items donde se dibuja cada item agregado al carrito
     const itemsCarrito = document.getElementById("items");
 
@@ -70,22 +71,27 @@ function dibujarCarrito() {
         //Se totaliza para visualizar en el footer del carrito
         totalCarrito+= item.producto.precio * item.cantidad;
         totalConDescuento+=item.producto.aplicarDescuento() * item.cantidad
+        cantidad++;
     }
     let carritoDom = document.getElementById("footer");
     carritoDom.innerHTML = `<td>Total: </td> 
                             <td>$${totalCarrito}</td>
                             <td>Neto: </td>
                             <td>$${totalConDescuento}</td>`;
+    $("#contador-carrito").html(cantidad);
     $('.decrementar').on('click', (e) => {
-        let nombreItemSeleccionado = e.currentTarget.parentNode.parentNode.firstChild.innerText;
-        const itemSeleccionado = carrito.find( item => item.producto.name == nombreItemSeleccionado );
-        itemSeleccionado.decrementar();
+        let nombreItemSeleccionado = e.currentTarget.parentNode.parentNode.children[0].innerText;
+            const itemSeleccionado = carrito.findIndex( item => item.producto.name == nombreItemSeleccionado );
+        carrito[itemSeleccionado].decrementar();
+        if ( carrito[itemSeleccionado].cantidad == 0 ){
+            carrito.splice(itemSeleccionado,1);
+        }
         dibujarCarrito();
     });
     $('.incrementar').on('click', (e) => {
         let nombreItemSeleccionado = e.currentTarget.parentNode.parentNode.firstChild.innerText;
-        const itemSeleccionado = carrito.find( item => item.producto.name == nombreItemSeleccionado );
-        itemSeleccionado.incrementar();
+        const itemSeleccionado = carrito.findIndex( item => item.producto.name == nombreItemSeleccionado );
+        carrito[itemSeleccionado].incrementar();
         dibujarCarrito();
     });
 }
