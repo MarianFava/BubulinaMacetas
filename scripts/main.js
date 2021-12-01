@@ -41,7 +41,6 @@ $(document).ready(function () {
         //Show and hide Modal Carrito
         $("#contenedorCarrito").show().fadeIn(1000);
     })
- 
 })
 
 //Efectos y animaciones concatenadas con jQuery

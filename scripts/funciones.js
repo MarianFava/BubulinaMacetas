@@ -39,22 +39,27 @@ function agregarAlCarrito(producto) {
     }else{
         carrito.push(new ItemCarrito(productoSeleccionado,1));
     }
-    
-    //Se dibuja los producto del carrito
+    //Se dibujan los productos del carrito
     dibujarCarrito()
 
+}
+
+//Funcion para guardar Carrito en localStorage
+function guardarCarrito(){
     //Local Storage y JSON
     localStorage.setItem("Carrito Storage", JSON.stringify(carrito));
 }
 
-
 //Función para visualizar total del carrito
 function dibujarCarrito() {
+
+    guardarCarrito();
     let totalCarrito=0;
     let totalConDescuento=0;
     let cantidad = 0;
     //Se obtiene  tbody con id #items donde se dibuja cada item agregado al carrito
     const itemsCarrito = document.getElementById("items");
+    itemsCarrito.innerHTML = "";
 
     //Se recorre el array carrito y se dibuja cada row dentro de tbody
     for ( item of carrito){
@@ -71,7 +76,7 @@ function dibujarCarrito() {
         //Se totaliza para visualizar en el footer del carrito
         totalCarrito+= item.producto.precio * item.cantidad;
         totalConDescuento+=item.producto.aplicarDescuento() * item.cantidad
-        cantidad++;
+        cantidad = cantidad + item.cantidad;
     }
     let carritoDom = document.getElementById("footer");
     carritoDom.innerHTML = `<td>Total: </td> 
@@ -79,18 +84,19 @@ function dibujarCarrito() {
                             <td>Neto: </td>
                             <td>$${totalConDescuento}</td>`;
     $("#contador-carrito").html(cantidad);
+    //Decrementar items del carrito
     $('.decrementar').on('click', (e) => {
         let nombreItemSeleccionado = e.currentTarget.parentNode.parentNode.children[0].innerText;
-            const itemSeleccionado = carrito.findIndex( item => item.producto.name == nombreItemSeleccionado );
+        const itemSeleccionado = carrito.findIndex( item => item.producto.nombre === nombreItemSeleccionado );
         carrito[itemSeleccionado].decrementar();
-        if ( carrito[itemSeleccionado].cantidad == 0 ){
+        if (carrito[itemSeleccionado].cantidad == 0 ){
             carrito.splice(itemSeleccionado,1);
         }
         dibujarCarrito();
     });
     $('.incrementar').on('click', (e) => {
-        let nombreItemSeleccionado = e.currentTarget.parentNode.parentNode.firstChild.innerText;
-        const itemSeleccionado = carrito.findIndex( item => item.producto.name == nombreItemSeleccionado );
+        let nombreItemSeleccionado = e.currentTarget.parentNode.parentNode.children[0].innerText;
+        const itemSeleccionado = carrito.findIndex( item => item.producto.nombre == nombreItemSeleccionado );
         carrito[itemSeleccionado].incrementar();
         dibujarCarrito();
     });
